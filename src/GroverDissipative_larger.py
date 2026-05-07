@@ -2,8 +2,8 @@
 r"""
 Larger-system Fig. 2-style simulation for the Grover-dissipation manuscript.
 
-Creates a new 2x2 figure addressing the referee request for a larger total number of
-qubits.
+Creates a new 2x2 figure addressing the referee request for a larger total
+number of qubits, and saves the plotted data to a parameterized CSV file.
 
 Default figure:
   (a) continuous dissipative Grover, n = 10 data qubits, r = 4 reservoir qubits
@@ -27,15 +27,16 @@ are therefore obtained by diagonalizing only an (R+1)x(R+1) matrix.  This is
 not an approximation to the manuscript Hamiltonian; it is the exact reduced
 symmetric-sector evolution.
 
-The script saves a PDF in the same directory as this file.
+The script saves a PDF and one long-form CSV in the same directory as this file.
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -152,11 +153,21 @@ def bj_amplitude_piecewise(t: np.ndarray, gamma: float, tau: float) -> np.ndarra
 
 
 def bj_success_probability(t: np.ndarray, params: LargeFigureParams) -> np.ndarray:
-    """BJ prediction F_BJ(t) = 1 - |a(t)|^2."""
+    """
+    Physical BJ success-probability estimate consistent with the manuscript
+    fidelity convention.
+
+    The ideal BJ transfer probability is 1 - |a(t)|^2 for an initial state
+    purely in the source state.  The Grover initial state already has marked
+    weight M/N, so the physical estimate is
+
+        F_BJ(t) = M/N + (1 - M/N) [1 - |a(t)|^2]
+                = 1 - [(N-M)/N] |a(t)|^2.
+    """
     gamma = bj_gamma(params.N, params.M, params.R, params.delta)
     tau = bj_tau(params.delta)
     amp = bj_amplitude_piecewise(t, gamma, tau)
-    return 1.0 - np.abs(amp) ** 2
+    return 1.0 - ((params.N - params.M) / params.N) * np.abs(amp) ** 2
 
 
 # ---------------------------------------------------------------------------
@@ -233,7 +244,7 @@ def continuous_curves(
     params: LargeFigureParams,
     n_periods: float,
     points_per_period: int,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Continuous standard, continuous dissipative, and BJ curves."""
     tau = bj_tau(params.delta)
     times = np.linspace(0.0, n_periods * tau, int(n_periods * points_per_period) + 1)
@@ -253,7 +264,7 @@ def continuous_curves(
     F_dg = np.sum(np.abs(states_dg[:, 1:]) ** 2, axis=1)
 
     F_bj = bj_success_probability(times, params)
-    return t_norm, F_std, F_dg, F_bj
+    return times, t_norm, F_std, F_dg, F_bj
 
 
 def build_projector_unitary(projector_vector: np.ndarray, phase_time: float) -> np.ndarray:
@@ -267,7 +278,7 @@ def build_projector_unitary(projector_vector: np.ndarray, phase_time: float) -> 
 def discrete_curves(
     params: LargeFigureParams,
     n_periods: float,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Discrete standard, discrete dissipative, and fine-grid BJ curves."""
     tau = bj_tau(params.delta)
     t_end = n_periods * tau
@@ -309,7 +320,115 @@ def discrete_curves(
     fine_times = np.linspace(0.0, t_end, max(1000, 5 * (n_steps + 1)))
     t_norm_bj = fine_times / tau
     F_bj = bj_success_probability(fine_times, params)
-    return t_norm, F_std, F_dg, t_norm_bj, F_bj
+    return step_times, t_norm, F_std, F_dg, fine_times, t_norm_bj, F_bj
+
+
+# ---------------------------------------------------------------------------
+# CSV utilities
+# ---------------------------------------------------------------------------
+
+
+def delta_t_token(delta_t: float) -> str:
+    """Compact delta_t token for filenames."""
+    if np.isclose(delta_t, np.pi):
+        return "dtpi"
+    if np.isclose(delta_t / np.pi, round(delta_t / np.pi, 8)):
+        return f"dt{delta_t / np.pi:.8g}pi".replace(".", "p")
+    return f"dt{delta_t:.8g}".replace(".", "p")
+
+
+def float_token(value: float) -> str:
+    """Compact float token for filenames."""
+    return f"{value:g}".replace(".", "p")
+
+
+def make_data_stem(
+    output_stem: str,
+    n_data: int,
+    N: int,
+    M: int,
+    r_top: int,
+    r_bottom: int,
+    C: float,
+    delta_t: float,
+    n_periods: float,
+) -> str:
+    """Build a descriptive CSV filename stem."""
+    return (
+        f"{output_stem}_data_larger_system_"
+        f"n{n_data}_N{N}_M{M}_rtop{r_top}_rbottom{r_bottom}_"
+        f"C{float_token(C)}_{delta_t_token(delta_t)}_periods{float_token(n_periods)}"
+    )
+
+
+def base_metadata(params: LargeFigureParams, panel: str, evolution: str) -> Dict[str, Any]:
+    """Metadata attached to every saved data row."""
+    return {
+        "panel": panel,
+        "evolution": evolution,
+        "n_data": params.n_data,
+        "N": params.N,
+        "M": params.M,
+        "panel_r_reservoir": params.r_reservoir,
+        "R_panel": params.R,
+        "total_qubits_panel": params.total_qubits,
+        "C": params.C,
+        "Delta": params.delta,
+        "delta_t": params.delta_t,
+        "tau": bj_tau(params.delta),
+        "gamma": bj_gamma(params.N, params.M, params.R, params.delta),
+    }
+
+
+def add_curve_rows(
+    rows: List[Dict[str, Any]],
+    metadata: Dict[str, Any],
+    curve: str,
+    curve_r: int,
+    times: np.ndarray,
+    t_norm: np.ndarray,
+    fidelity: np.ndarray,
+) -> None:
+    """Append one plotted curve to the long-form CSV rows."""
+    for t, tn, f in zip(times, t_norm, fidelity):
+        row = dict(metadata)
+        row.update({
+            "curve": curve,
+            "curve_r": curve_r,
+            "t": float(t),
+            "t_over_tau": float(tn),
+            "F": float(np.real_if_close(f)),
+        })
+        rows.append(row)
+
+
+def write_csv(rows: Iterable[Dict[str, Any]], csv_path: Path) -> None:
+    """Write rows to CSV with a stable column order."""
+    rows = list(rows)
+    fieldnames = [
+        "panel",
+        "evolution",
+        "curve",
+        "curve_r",
+        "n_data",
+        "N",
+        "M",
+        "panel_r_reservoir",
+        "R_panel",
+        "total_qubits_panel",
+        "C",
+        "Delta",
+        "delta_t",
+        "tau",
+        "gamma",
+        "t_over_tau",
+        "t",
+        "F",
+    ]
+    with csv_path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 # ---------------------------------------------------------------------------
@@ -317,20 +436,47 @@ def discrete_curves(
 # ---------------------------------------------------------------------------
 
 
-def plot_panel_continuous(ax: plt.Axes, params: LargeFigureParams, n_periods: float, points_per_period: int, label: str) -> None:
-    t, F_std, F_dg, F_bj = continuous_curves(params, n_periods, points_per_period)
+def plot_panel_continuous(
+    ax: plt.Axes,
+    params: LargeFigureParams,
+    n_periods: float,
+    points_per_period: int,
+    label: str,
+) -> List[Dict[str, Any]]:
+    times, t, F_std, F_dg, F_bj = continuous_curves(params, n_periods, points_per_period)
+
     ax.plot(t, F_std, color=COLORS["standard"], label=fr"$r=0$")
     ax.plot(t, F_dg, color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$")
     ax.plot(t, F_bj, color=COLORS["bj"], linestyle="--", label="BJ")
     ax.set_title(fr"{label} continuous, $r={params.r_reservoir}$")
 
+    rows: List[Dict[str, Any]] = []
+    metadata = base_metadata(params, panel=label.strip("()"), evolution="continuous")
+    add_curve_rows(rows, metadata, "standard", 0, times, t, F_std)
+    add_curve_rows(rows, metadata, "dissipative", params.r_reservoir, times, t, F_dg)
+    add_curve_rows(rows, metadata, "BJ", params.r_reservoir, times, t, F_bj)
+    return rows
 
-def plot_panel_discrete(ax: plt.Axes, params: LargeFigureParams, n_periods: float, label: str) -> None:
-    t, F_std, F_dg, t_bj, F_bj = discrete_curves(params, n_periods)
+
+def plot_panel_discrete(
+    ax: plt.Axes,
+    params: LargeFigureParams,
+    n_periods: float,
+    label: str,
+) -> List[Dict[str, Any]]:
+    step_times, t, F_std, F_dg, fine_times, t_bj, F_bj = discrete_curves(params, n_periods)
+
     ax.step(t, F_std, where="post", color=COLORS["standard"], label=fr"$r=0$")
     ax.step(t, F_dg, where="post", color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$")
     ax.plot(t_bj, F_bj, color=COLORS["bj"], linestyle="--", label="BJ")
-    ax.set_title(fr"{label} trotterized, $r={params.r_reservoir}$")  
+    ax.set_title(fr"{label} trotterized, $r={params.r_reservoir}$")
+
+    rows: List[Dict[str, Any]] = []
+    metadata = base_metadata(params, panel=label.strip("()"), evolution="trotterized")
+    add_curve_rows(rows, metadata, "standard", 0, step_times, t, F_std)
+    add_curve_rows(rows, metadata, "dissipative", params.r_reservoir, step_times, t, F_dg)
+    add_curve_rows(rows, metadata, "BJ", params.r_reservoir, fine_times, t_bj, F_bj)
+    return rows
 
 
 def make_larger_system_figure(
@@ -343,8 +489,8 @@ def make_larger_system_figure(
     points_per_period: int = 600,
     delta_t: float = np.pi,
     output_stem: str = "GroverDissipative_fig_larger_system",
-) -> Path:
-    """Create and save the larger-system figure."""
+) -> Tuple[Path, Path]:
+    """Create and save the larger-system figure and its plotted data CSV."""
     configure_plot_style()
 
     params_top = LargeFigureParams(n_data=n_data, n_solutions=M, r_reservoir=r_top, C=C, delta_t=delta_t)
@@ -352,13 +498,14 @@ def make_larger_system_figure(
 
     fig, axes = plt.subplots(2, 2, figsize=(9.2, 7.2), sharex=True, sharey=True)
 
-    plot_panel_continuous(axes[0, 0], params_top, n_periods, points_per_period, "(a)")
-    plot_panel_discrete(axes[0, 1], params_top, n_periods, "(b)")
-    plot_panel_continuous(axes[1, 0], params_bottom, n_periods, points_per_period, "(c)")
-    plot_panel_discrete(axes[1, 1], params_bottom, n_periods, "(d)")
+    rows: List[Dict[str, Any]] = []
+    rows.extend(plot_panel_continuous(axes[0, 0], params_top, n_periods, points_per_period, "(a)"))
+    rows.extend(plot_panel_discrete(axes[0, 1], params_top, n_periods, "(b)"))
+    rows.extend(plot_panel_continuous(axes[1, 0], params_bottom, n_periods, points_per_period, "(c)"))
+    rows.extend(plot_panel_discrete(axes[1, 1], params_bottom, n_periods, "(d)"))
 
-    axes[0, 0].set_ylabel(r"$F$")
-    axes[1, 0].set_ylabel(r"$F$")
+    axes[0, 0].set_ylabel("F")
+    axes[1, 0].set_ylabel("F")
     axes[1, 0].set_xlabel(r"$t/\tau$")
     axes[1, 1].set_xlabel(r"$t/\tau$")
 
@@ -366,24 +513,31 @@ def make_larger_system_figure(
         ax.set_xlim(0.0, n_periods)
         ax.set_ylim(-0.05, 1.05)
         ax.grid(False)
-        ax.legend(loc="lower right", frameon=True)
-
-    # Compact parameter note above the panels.
-    # fig.suptitle(
-    #     fr"Larger-system check: $n={n_data}$, $M={M}$, $C={C:g}$, "
-    #     fr"$\delta t={delta_t/np.pi:g}\pi$",
-    #     y=1.01,
-    #     fontsize=20,
-    # )
+        ax.legend(loc="lower right", frameon=False)
 
     fig.tight_layout()
 
     out_dir = Path(__file__).resolve().parent
     pdf_path = out_dir / f"{output_stem}.pdf"
+    csv_stem = make_data_stem(
+        output_stem=output_stem,
+        n_data=n_data,
+        N=params_top.N,
+        M=M,
+        r_top=r_top,
+        r_bottom=r_bottom,
+        C=C,
+        delta_t=delta_t,
+        n_periods=n_periods,
+    )
+    csv_path = out_dir / f"{csv_stem}.csv"
+
     fig.savefig(pdf_path, bbox_inches="tight")
     plt.close(fig)
+    write_csv(rows, csv_path)
 
     print(f"Saved {pdf_path}")
+    print(f"Saved {csv_path}")
     print("Panel parameters:")
     for p in (params_top, params_bottom):
         print(
@@ -392,7 +546,7 @@ def make_larger_system_figure(
             f"tau={bj_tau(p.delta):.8g}, gamma={bj_gamma(p.N, p.M, p.R, p.delta):.8g}"
         )
 
-    return pdf_path
+    return pdf_path, csv_path
 
 
 def parse_args() -> argparse.Namespace:

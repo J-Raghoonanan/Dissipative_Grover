@@ -619,10 +619,10 @@ def make_figure_2(n_periods: int = 3) -> None:
         ax.grid(False)
 
     # Currently legends in all panels; adjust here if you want only one.
-    axes[0].legend(fontsize=14, loc='lower right', frameon=True)
-    axes[1].legend(fontsize=14, loc='lower right', frameon=True)
-    axes[2].legend(fontsize=14, loc='lower right', frameon=True)
-    axes[3].legend(fontsize=14, loc='lower right', frameon=True)
+    axes[0].legend(fontsize=14, loc='lower right', frameon=False)
+    axes[1].legend(fontsize=14, loc='lower right', frameon=False)
+    axes[2].legend(fontsize=14, loc='lower right', frameon=False)
+    axes[3].legend(fontsize=14, loc='lower right', frameon=False)
 
     fig.tight_layout()
     fig.savefig("GroverDissipative_fig.pdf", bbox_inches="tight")
