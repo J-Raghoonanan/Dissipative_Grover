@@ -7,8 +7,8 @@ number of qubits, and saves the plotted data to a parameterized CSV file.
 
 Default figure:
   (a) continuous dissipative Grover, n = 10 data qubits, r = 4 reservoir qubits
-  (b) discrete/trotterized dissipative Grover, n = 10, r = 4
-  (c) continuous dissipative Grover, n = 10, r = 3
+  (b) continuous dissipative Grover, n = 10, r = 3
+  (c) discrete/trotterized dissipative Grover, n = 10, r = 4
   (d) discrete/trotterized dissipative Grover, n = 10, r = 3
 
 The dissipative simulations correspond to total sizes n+r = 14 and 13
@@ -493,19 +493,19 @@ def make_larger_system_figure(
     """Create and save the larger-system figure and its plotted data CSV."""
     configure_plot_style()
 
-    params_top = LargeFigureParams(n_data=n_data, n_solutions=M, r_reservoir=r_top, C=C, delta_t=delta_t)
-    params_bottom = LargeFigureParams(n_data=n_data, n_solutions=M, r_reservoir=r_bottom, C=C, delta_t=delta_t)
+    params_r4 = LargeFigureParams(n_data=n_data, n_solutions=M, r_reservoir=r_top, C=C, delta_t=delta_t)
+    params_r3 = LargeFigureParams(n_data=n_data, n_solutions=M, r_reservoir=r_bottom, C=C, delta_t=delta_t)
 
     fig, axes = plt.subplots(2, 2, figsize=(9.2, 7.2), sharex=True, sharey=True)
 
     rows: List[Dict[str, Any]] = []
-    rows.extend(plot_panel_continuous(axes[0, 0], params_top, n_periods, points_per_period, "(a)"))
-    rows.extend(plot_panel_discrete(axes[0, 1], params_top, n_periods, "(b)"))
-    rows.extend(plot_panel_continuous(axes[1, 0], params_bottom, n_periods, points_per_period, "(c)"))
-    rows.extend(plot_panel_discrete(axes[1, 1], params_bottom, n_periods, "(d)"))
+    rows.extend(plot_panel_continuous(axes[0, 0], params_r4, n_periods, points_per_period, "(a)"))
+    rows.extend(plot_panel_continuous(axes[0, 1], params_r3, n_periods, points_per_period, "(b)"))
+    rows.extend(plot_panel_discrete(axes[1, 0], params_r4, n_periods, "(c)"))
+    rows.extend(plot_panel_discrete(axes[1, 1], params_r3, n_periods, "(d)"))
 
-    axes[0, 0].set_ylabel("F")
-    axes[1, 0].set_ylabel("F")
+    axes[0, 0].set_ylabel(r"$F$")
+    axes[1, 0].set_ylabel(r"$F$")
     axes[1, 0].set_xlabel(r"$t/\tau$")
     axes[1, 1].set_xlabel(r"$t/\tau$")
 
@@ -522,7 +522,7 @@ def make_larger_system_figure(
     csv_stem = make_data_stem(
         output_stem=output_stem,
         n_data=n_data,
-        N=params_top.N,
+        N=params_r4.N,
         M=M,
         r_top=r_top,
         r_bottom=r_bottom,
@@ -539,7 +539,7 @@ def make_larger_system_figure(
     print(f"Saved {pdf_path}")
     print(f"Saved {csv_path}")
     print("Panel parameters:")
-    for p in (params_top, params_bottom):
+    for p in (params_r4, params_r3):
         print(
             f"  n={p.n_data}, r={p.r_reservoir}, n+r={p.total_qubits}, "
             f"N={p.N}, R={p.R}, M={p.M}, Delta={p.delta:.8g}, "
