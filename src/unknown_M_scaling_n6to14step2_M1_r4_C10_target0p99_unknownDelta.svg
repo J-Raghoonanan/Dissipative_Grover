@@ -249,9 +249,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.97672627"
-     inkscape:cx="342.47057"
-     inkscape:cy="117.74026"
+     inkscape:zoom="1.6982499"
+     inkscape:cx="292.94864"
+     inkscape:cy="127.18976"
      inkscape:window-width="1520"
      inkscape:window-height="949"
      inkscape:window-x="0"
@@ -285,60 +285,68 @@
     <text
        id="text153-4-6-4"
        xml:space="preserve"
-       x="396.25015"
-       y="78.570633"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#3ba3ec;stroke:#3ba3ec;stroke-width:1.01682"
+       x="400.65121"
+       y="82.206116"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#3ba3ec"
        transform="scale(0.90887079,1.1002664)"><tspan
          sodipodi:role="line"
-         id="tspan18">n=14</tspan></text>
+         id="tspan18"
+         x="400.65121"
+         y="82.206116">n=14</tspan></text>
     <path
        id="path156-8-4-8"
-       d="M 368.16157,72.925 340.01254,29.603574"
+       d="M 386.16157,72.925 358.01254,29.603574"
        style="fill:#3ba3ec;stroke:#3ba3ec;stroke-width:2.146;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="path157-3-3-7"
-       d="m 340.17479,30.737853 -1.87192,4.691092 -0.12709,-0.08823 -0.96717,-8.051504 c -0.63331,-2.581889 -1.26661,-5.16378 -1.89954,-7.744668 1.36896,2.025378 2.73794,4.050773 4.10763,6.07572 l 4.78138,5.170919 0.01,0.176113 -4.03314,-0.229397"
+       d="m 358.17479,30.737853 -1.87192,4.691092 -0.12709,-0.08823 -0.96717,-8.051504 c -0.63331,-2.581889 -1.26661,-5.16378 -1.89954,-7.744668 1.36896,2.025378 2.73794,4.050773 4.10763,6.07572 l 4.78138,5.170919 0.01,0.176113 -4.03314,-0.229397"
        style="fill:#3ba3ec;fill-opacity:1;fill-rule:nonzero;stroke:#3ba3ec;stroke-width:1.23697;stroke-dasharray:none" />
     <text
        id="text153-4-6-3"
        xml:space="preserve"
-       x="269.2565"
+       x="273.2565"
        y="102.73935"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#36ada4;stroke-width:1.33333;fill:#36ada4"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#36ada4"><tspan
          sodipodi:role="line"
-         id="tspan17">n=12</tspan></text>
+         id="tspan17"
+         x="273.2565"
+         y="102.73935">n=12</tspan></text>
     <path
        id="path156-8-4-5"
-       d="M 283.89492,86.774568 251.0311,32.172275"
-       style="stroke:#36ada4;stroke-width:2.276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;fill:#36ada4" />
+       d="M 297.89492,86.774568 265.0311,32.172275"
+       style="fill:#36ada4;stroke:#36ada4;stroke-width:2.276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="path157-3-3-0"
-       d="m 251.79745,33.853472 -2.7007,5.590719 -0.18336,-0.105155 -1.39538,-9.595569 c -0.9137,-3.077027 -1.82739,-6.154055 -2.74055,-9.229889 1.97506,2.413791 3.95014,4.827603 5.92626,7.240882 l 6.89831,6.162563 0.0142,0.209887 -5.81879,-0.273389"
-       style="fill-opacity:1;fill-rule:nonzero;stroke:#36ada4;stroke-width:1.622;stroke-dasharray:none;fill:#36ada4" />
+       d="m 265.79745,33.853472 -2.7007,5.590719 -0.18336,-0.105155 -1.39538,-9.595569 c -0.9137,-3.077027 -1.82739,-6.154055 -2.74055,-9.229889 1.97506,2.413791 3.95014,4.827603 5.92626,7.240882 l 6.89831,6.162563 0.0142,0.209887 -5.81879,-0.273389"
+       style="fill:#36ada4;fill-opacity:1;fill-rule:nonzero;stroke:#36ada4;stroke-width:1.622;stroke-dasharray:none" />
     <text
        id="text153-4-6"
        xml:space="preserve"
-       x="209.29503"
-       y="139.53563"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#50b131;stroke:#50b131;stroke-width:1.33333"><tspan
+       x="211.29503"
+       y="137.53563"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#50b131"><tspan
          sodipodi:role="line"
-         id="tspan16">n=10</tspan></text>
+         id="tspan16"
+         x="211.29503"
+         y="137.53563">n=10</tspan></text>
     <path
        id="path156-8-4"
-       d="M 225.70645,123.23378 170.27828,33.558806"
+       d="M 237.70645,123.23378 182.27828,33.558806"
        style="fill:#50b131;stroke:#50b131;stroke-width:3.122;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="path157-3-3"
-       d="m 170.51237,34.91061 -2.7007,5.590719 -0.18336,-0.105155 -1.39538,-9.595569 c -0.9137,-3.077027 -1.82739,-6.154055 -2.74055,-9.229889 1.97506,2.413791 3.95014,4.827603 5.92626,7.240882 l 6.89831,6.162563 0.0142,0.209887 -5.81879,-0.273389"
+       d="m 182.51237,34.91061 -2.7007,5.590719 -0.18336,-0.105155 -1.39538,-9.595569 c -0.9137,-3.077027 -1.82739,-6.154055 -2.74055,-9.229889 1.97506,2.413791 3.95014,4.827603 5.92626,7.240882 l 6.89831,6.162563 0.0142,0.209887 -5.81879,-0.273389"
        style="fill:#50b131;fill-opacity:1;fill-rule:nonzero;stroke:#50b131;stroke-width:1.622;stroke-dasharray:none" />
     <text
        id="text153-4"
        xml:space="preserve"
-       x="176.46103"
-       y="172.09378"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#bb9832;stroke:#bb9832;stroke-width:1.33333"><tspan
+       x="168.46103"
+       y="168.09378"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#bb9832"><tspan
          sodipodi:role="line"
-         id="tspan2">n=8</tspan></text>
+         id="tspan2"
+         x="168.46103"
+         y="168.09378">n=8</tspan></text>
     <g
        id="g2-5"
        style="fill:#bb9832;stroke:#bb9832"
@@ -598,26 +606,19 @@
        transform="matrix(1.3333333,0,0,-1.3333333,0,390.17333)" />
     <path
        id="path44"
-       d="m 244.76157,90.925 h 12 12"
-       style="fill:none;stroke:#666666;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:1.2, 1.98;stroke-dashoffset:0;stroke-opacity:1"
-       transform="matrix(1.3333333,0,0,-1.3333333,0,390.17333)" />
+       d="m 301.13869,273.01112 h 24.60503 24.60503"
+       style="fill:none;stroke:#666666;stroke-width:1.98414;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:1.98414, 3.27383;stroke-dashoffset:0;stroke-opacity:1" />
     <text
        id="text44"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,371.14876,274.415)"><tspan
-         id="tspan45"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Times New Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         y="0">target </tspan><tspan
-         id="tspan46"
-         style="font-style:oblique;font-variant:normal;font-weight:normal;font-size:12px;font-family:نسخ;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="30.316406"
-         y="0">F</tspan><tspan
-         id="tspan47"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Devanagari MT';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="39.556641"
-         dx="0 2.3365781"
-         y="0">=0.99</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1.33333"
+       x="355.14877"
+       y="278.41501"><tspan
+         sodipodi:role="line"
+         id="tspan19"
+         x="355.14877"
+         y="278.41501"
+         style="stroke-width:1.33333">target F=0.99</tspan></text>
     <path
        id="path47"
        d="M 464.54843,72.925 H 761.66 V 285.43 H 464.54843 Z"
@@ -949,9 +950,10 @@
     <text
        id="text99"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,678.59791,35.2)"><tspan
+       transform="matrix(1.3333333,0,0,1.3333333,678.59791,35.2)"
+       style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16.0000004px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
          id="tspan99"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Times New Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="font-variant:normal;font-weight:normal;font-size:16.0000004px;font-family:sans-serif;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;-inkscape-font-specification:'sans-serif, Normal';font-style:normal;font-stretch:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
          x="0"
          y="0">exact first crossing</tspan></text>
     <path
@@ -962,9 +964,10 @@
     <text
        id="text100"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,678.59791,57.858333)"><tspan
+       transform="matrix(1.3333333,0,0,1.3333333,678.59791,57.858333)"
+       style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16.0000004px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
          id="tspan100"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Times New Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="font-variant:normal;font-weight:normal;font-size:16.0000004px;font-family:sans-serif;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;-inkscape-font-specification:'sans-serif, Normal';font-style:normal;font-stretch:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
          x="0"
          y="0">BJ prediction</tspan></text>
     <path
@@ -975,26 +978,13 @@
     <text
        id="text101"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,678.59791,84.755833)"><tspan
-         id="tspan101"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Times New Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         y="0">fit </tspan><tspan
-         id="tspan102"
-         style="font-style:oblique;font-variant:normal;font-weight:normal;font-size:12px;font-family:نسخ;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="13.664062"
-         y="0">t</tspan><tspan
-         id="tspan103"
-         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Devanagari MT';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="20.707031"
-         dx="0 2.3365781"
-         y="0">=5.58</tspan><tspan
-         id="tspan104"
-         style="font-style:oblique;font-variant:normal;font-weight:normal;font-size:12px;font-family:نسخ;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="68.453094"
-         y="0.326875">N</tspan></text>
+       transform="matrix(1.3333333,0,0,1.3333333,678.59791,84.755833)"
+       style="-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16.0000004px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+         sodipodi:role="line"
+         id="tspan20">fit t=5.58  N</tspan></text>
     <g
-       id="g105">
+       id="g105"
+       transform="translate(30)">
       <path
          d="M 1089,1552 527,-294 H 485 L 254,456 c -8,24 -16,41 -25,52 -10,10 -22,16 -37,16 -23,0 -46,-9 -68,-27 l -12,20 164,126 h 25 L 528,-93 h 4 l 500,1645 z"
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -1004,9 +994,8 @@
     </g>
     <path
        id="path106"
-       d="m 66.953094,12.5 h 11.976563 v 0.75 H 66.953094 Z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,678.59791,85.858333)" />
+       d="m 797.8687,69.191667 h 15.96875 v -1 H 797.8687 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" />
     <text
        id="text24"
        xml:space="preserve"
@@ -1048,17 +1037,17 @@
     <text
        id="text153"
        xml:space="preserve"
-       x="153.45935"
-       y="197.57491"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f77189;stroke:#f77189;stroke-width:1.33333"><tspan
+       x="147.45935"
+       y="209.57491"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f77189"><tspan
          sodipodi:role="line"
          id="tspan1"
-         x="153.45935"
-         y="197.57491">n=6</tspan></text>
+         x="147.45935"
+         y="209.57491">n=6</tspan></text>
     <g
        id="g2"
        style="fill:#f77189;stroke:#f77189"
-       transform="translate(-2,10)">
+       transform="translate(-2,26)">
       <path
          id="path156"
          d="M 171.22855,165.25298 128.66694,46.392219"
