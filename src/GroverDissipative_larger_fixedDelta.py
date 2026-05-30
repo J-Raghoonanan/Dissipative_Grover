@@ -28,7 +28,6 @@ not an approximation to the manuscript Hamiltonian; it is the exact reduced
 symmetric-sector evolution.
 
 The script saves a PDF and one long-form CSV in the same directory as this file.
-No PNG file is generated.
 """
 
 from __future__ import annotations
@@ -509,10 +508,12 @@ def plot_panel_continuous(
     times, t, F_std_panel, F_dg, F_bj = continuous_curves(params, n_periods, points_per_period)
     times_std_ref, t_std_ref, F_std_ref = standard_reference
 
-    ax.plot(t_std_ref, F_std_ref, color=COLORS["standard"], label=fr"$r=0$")
-    ax.plot(t, F_dg, color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$")
-    ax.plot(t, F_bj, color=COLORS["bj"], linestyle="--", label="BJ")
+    ax.plot(t_std_ref, F_std_ref, color=COLORS["standard"], label=fr"$r=0$", linewidth=1.0, alpha=0.4)
+    ax.plot(t, F_dg, color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$", linewidth=1.0)
+    ax.plot(t, F_bj, color=COLORS["bj"], linestyle="--", label="BJ", linewidth=1.0)
     ax.set_title(fr"{label} continuous, $r={params.r_reservoir}$")
+    # ax.set_yscale("log")
+    # ax.set_xscale("log")
 
     rows: List[Dict[str, Any]] = []
     metadata = base_metadata(params, panel=label.strip("()"), evolution="continuous")
@@ -533,9 +534,9 @@ def plot_panel_discrete(
     step_times, t, F_std_panel, F_dg, fine_times, t_bj, F_bj = discrete_curves(params, n_periods)
     step_times_std_ref, t_std_ref, F_std_ref = standard_reference
 
-    ax.step(t_std_ref, F_std_ref, where="post", color=COLORS["standard"], label=fr"$r=0$")
-    ax.step(t, F_dg, where="post", color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$")
-    ax.plot(t_bj, F_bj, color=COLORS["bj"], linestyle="--", label="BJ")
+    ax.step(t_std_ref, F_std_ref, where="post", color=COLORS["standard"], label=fr"$r=0$", linewidth=1.0, alpha=0.4)
+    ax.step(t, F_dg, where="post", color=COLORS["dissipative"], label=fr"$r={params.r_reservoir}$", linewidth=1.0)
+    ax.plot(t_bj, F_bj, color=COLORS["bj"], linestyle="--", label="BJ", linewidth=1.0)
     ax.set_title(fr"{label} trotterized, $r={params.r_reservoir}$")
 
     rows: List[Dict[str, Any]] = []
@@ -587,7 +588,9 @@ def make_larger_system_figure(
 
     for ax in axes.ravel():
         ax.set_xlim(0.0, n_periods)
+        # ax.set_xlim(1e-5, n_periods)
         ax.set_ylim(-0.05, 1.05)
+        # ax.set_ylim(1e-5, 1.05)
         ax.grid(False)
         ax.legend(loc="lower right", frameon=False)
 
