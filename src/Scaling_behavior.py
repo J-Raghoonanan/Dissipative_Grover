@@ -274,12 +274,21 @@ def run_study(
     scaling_sqrtN: List[float] = []
     scaling_exact: List[float] = []
     scaling_bj: List[float] = []
+    
+    # Use one common physical time endpoint for all curves.
+    # By default, choose it from the largest n value.
+    n_ref = max(n_values)
+    params_ref = StudyParams(n_data=n_ref, M=M, r_reservoir=r, C=C, delta_mode=delta_mode)
+    tau_ref = bj_tau(params_ref)
+    t_end_global = curve_tau_fraction * tau_ref
 
     for n in n_values:
         params = StudyParams(n_data=n, M=M, r_reservoir=r, C=C, delta_mode=delta_mode)
+        # tau = bj_tau(params)
+        # t_end = curve_tau_fraction * tau
+        # times = np.linspace(0.0, t_end, points_per_curve)
         tau = bj_tau(params)
-        t_end = curve_tau_fraction * tau
-        times = np.linspace(0.0, t_end, points_per_curve)
+        times = np.linspace(0.0, t_end_global, points_per_curve)
         F_exact = exact_success_probability(times, params)
         F_BJ = bj_physical_success_probability(times, params)
 
